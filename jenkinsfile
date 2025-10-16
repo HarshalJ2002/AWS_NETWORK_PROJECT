@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git checkout') {
+            steps {
+                git branch: 'Harsh', url: 'https://github.com/HarshalJ2002/AWS_NETWORK_PROJECT.git'
+            }
+        }
+        stage('terraform init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('terraform plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+        stage('terraform destroy') {
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+    }
+}
